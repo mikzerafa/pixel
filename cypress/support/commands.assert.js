@@ -13,3 +13,7 @@ Cypress.Commands.add('HasAttribute', { prevSubject: true }, (subject, attr) => {
 Cypress.Commands.add('DoesNotHaveAttribute', { prevSubject: true }, (subject, attr) => {
     return cy.wrap(subject).should('not.have.attr', attr)
 })
+
+Cypress.Commands.add('Has1OrMore', { prevSubject: true }, (subject) => {
+    return cy.wrap(subject).should('have.length.at.least', 1)
+})
