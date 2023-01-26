@@ -4,7 +4,8 @@
     "description": "",
     "main": "index.js",
     "scripts": {
-        "open": "Cypress open"
+        "open": "Cypress open",
+        "test": "Cypress run -s cypress/e2e/*.cy.js"
     },
     "repository": {
         "type": "git",
