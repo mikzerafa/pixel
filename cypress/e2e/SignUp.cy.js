@@ -13,5 +13,14 @@ describe('Sign Up Tests', () => {
         cy.ContinueButtonIsDisabled()
     })
 
+    it.only('Should have Continue button enabled when Entering Email and Password', () => {
+        cy.InputFakeEmailAndPassword()
+        cy.ContinueButtonIsEnabled()
+    })
 
+    it('Should Show Country input after Entering details and clicking continue', () => {
+        cy.InputFakeEmailAndPassword()
+        cy.ClickContinueButton()
+        cy.IsOnPage2OfRegistration()
+    })
 })
