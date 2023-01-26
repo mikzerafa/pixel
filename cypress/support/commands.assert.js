@@ -1,3 +1,7 @@
-Commands.add('IsVisible', () => {
+Cypress.Commands.add('IsVisible', { prevSubject: true }, (subject, ) => {
+    return cy.wrap(subject).should('be.visible')
+})
 
+Cypress.Commands.add('HasAttribute', { prevSubject: true }, (subject, attr) => {
+    return cy.wrap(subject).should('have.attr', attr)
 })
