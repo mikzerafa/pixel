@@ -19,6 +19,7 @@ import './commands.navigate'
 import './commands.assert'
 import './commands.content'
 import './commands.input'
+import './commands.interact'
 
 // Alternatively you can use CommonJS syntax:
 // require('./commands')

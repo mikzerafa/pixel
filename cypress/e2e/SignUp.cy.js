@@ -13,7 +13,7 @@ describe('Sign Up Tests', () => {
         cy.ContinueButtonIsDisabled()
     })
 
-    it.only('Should have Continue button enabled when Entering Email and Password', () => {
+    it('Should have Continue button enabled when Entering Email and Password', () => {
         cy.InputFakeEmailAndPassword()
         cy.ContinueButtonIsEnabled()
     })

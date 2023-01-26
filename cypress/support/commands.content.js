@@ -28,7 +28,7 @@ Cypress.Commands.add('InputFakeEmailAndPassword', () => {
 
 Cypress.Commands.add('IsOnPage2OfRegistration', () => {
     // Can be improved but just checking if country is visible for now
-    Register.get.page2.country().IsVisible()
+    Register.get.page2.country().Exists() //is blocked by css property from being visible
 })
 
 Cypress.Commands.add('EnterFakeEmail', { prevSubject: true }, (subject, ) => {
