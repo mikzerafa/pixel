@@ -20,6 +20,8 @@ import './commands.assert'
 import './commands.content'
 import './commands.input'
 import './commands.interact'
+import './commands.shortcut'
+import './commands.storage'
 
 // Alternatively you can use CommonJS syntax:
 // require('./commands')
