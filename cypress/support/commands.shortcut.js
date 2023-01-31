@@ -15,3 +15,9 @@ Cypress.Commands.add('RegisterPage4', () => {
     cy.EnterFakeDetailsPage3Registration()
     cy.ClickContinueButtonInRegister()
 })
+
+Cypress.Commands.add('SignUp', () => {
+    cy.RegisterPage4()
+    cy.ToggleTermsAndConditionsButton()
+    cy.ClickContinueButtonInRegister()
+})
