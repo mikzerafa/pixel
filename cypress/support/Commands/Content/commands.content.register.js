@@ -1,4 +1,4 @@
-import Register from "../pom/Register"
+import Register from "../../pom/Register"
 
 
 Cypress.Commands.add('HasEmailField', () => {
@@ -76,4 +76,8 @@ Cypress.Commands.add('IsOnPage4Registration', () => {
 
 Cypress.Commands.add('ToggleTermsAndConditionsButton', () => {
     Register.get.page4.termsAndConditionsToggleButton().ToggleButton()
+})
+
+Cypress.Commands.add('Casino_HoverOnGame', (category, index) => {
+
 })

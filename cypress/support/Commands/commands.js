@@ -13,3 +13,16 @@ Cypress.Commands.add('ShouldBeLoggedIn', (wait) => {
     cy.wait(wait);
     cy.SessionStorageContainsValueInKey("reduxPersist:user", "loggedIn", true)
 })
+
+Cypress.Commands.add('DynamicUrlCheck', (contains, time = 10000, waitTime = 500) => {
+    cy.url().then((url) => {
+        if (url.includes(contains)) {
+            cy.url().should('contain', contains)
+        } else if (time > 0) {
+            cy.wait(500)
+            cy.DynamicUrlCheck(contains, time - waitTime, waitTime)
+        } else {
+            cy.url().should('contain', contains)
+        }
+    })
+})

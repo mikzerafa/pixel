@@ -27,6 +27,10 @@ function dummy(format, output = "") {
             case '(':
                 let amount = parseInt(format.substring(1, format.indexOf(')')))
                 let type = output.charAt(output.length - 1)
+                    //BUG here -> output has value not type .. below is a patch
+                if (type == 'n') {
+                    type == 'c';
+                }
                 format = Quantify(type, amount - 1) + format.substring(format.indexOf(')') + 1, format.length)
             default:
                 output += format[0];

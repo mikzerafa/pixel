@@ -22,6 +22,7 @@
         "Faker": "^0.7.2",
         "cypress": "^12.4.0",
         "cypress-iframe": "^1.0.1",
+        "cypress-real-events": "^1.7.6",
         "json-evolve": "^21.0.0"
     },
     "devDependencies": {
