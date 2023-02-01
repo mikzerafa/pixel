@@ -14,14 +14,16 @@
 // ***********************************************************
 
 // Import commands.js using ES2015 syntax:
-import './commands'
-import './commands.navigate'
-import './commands.assert'
-import './commands.content'
-import './commands.input'
-import './commands.interact'
-import './commands.shortcut'
-import './commands.storage'
+import './Commands/commands'
+import './Commands/commands.navigate'
+import './Commands/commands.assert'
+import './Commands/commands.content'
+import './Commands/commands.input'
+import './Commands/commands.interact'
+import './Commands/commands.shortcut'
+import './Commands/commands.storage'
+import './Commands/DataValidation/commands.dataValidation'
+import './Commands/DataValidation/commands.dataValidation.EmailField'
 
 // Alternatively you can use CommonJS syntax:
 // require('./commands')

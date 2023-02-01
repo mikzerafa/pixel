@@ -4,7 +4,8 @@ const get = {
     continueButton: () => { return cy.get('button[class$="register"]') },
     page1: {
         emailInput: () => { return cy.get('input[id="email"]') },
-        passwordInput: () => cy.get('input[id="password"]')
+        passwordInput: () => cy.get('input[id="password"]'),
+        emailValidator: () => get.page1.emailInput().parent().find('span').eq(0)
     },
 
     page2: {

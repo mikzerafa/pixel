@@ -1,4 +1,4 @@
-import Lobby from '../support/pom/Lobby'
+import Lobby from '../pom/Lobby'
 
 Cypress.Commands.add('ClickCasinoButton', () => {
     Lobby.get.casinoButton().eq(0).click()

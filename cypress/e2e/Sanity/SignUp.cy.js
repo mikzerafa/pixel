@@ -39,12 +39,12 @@ describe('Sign Up Tests - SANITY', () => {
         cy.IsOnPage4Registration()
     })
 
-    it.only('Should Show Toggle Buttons on Page 4 of Registration', () => {
+    it('Should Show Toggle Buttons on Page 4 of Registration', () => {
         cy.RegisterPage4()
         cy.Page4RegistrationFieldsExist()
     })
 
-    it.only('Should complete sign up process after clicking terms and conditions button in Registration Page 4', () => {
+    it('Should complete sign up process after clicking terms and conditions button in Registration Page 4', () => {
         cy.RegisterPage4()
         cy.ToggleTermsAndConditionsButton()
         cy.ClickContinueButtonInRegister()

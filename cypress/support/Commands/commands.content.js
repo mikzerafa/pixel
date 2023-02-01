@@ -1,4 +1,4 @@
-import Register from "./pom/Register"
+import Register from "../pom/Register"
 
 
 Cypress.Commands.add('HasEmailField', () => {

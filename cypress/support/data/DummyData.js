@@ -10,8 +10,42 @@ const get = {
     fakeFirstName: () => { return Faker.Name.firstName() },
     fakeLastName: () => { return Faker.Name.lastName() },
 
-    fakeDateOfBirthAbove18: () => { return formatDateWith0s(faker.date.birthdate({ min: 18, max: 65, mode: 'age' }).toLocaleDateString()) }
+    fakeDateOfBirthAbove18: () => { return formatDateWith0s(faker.date.birthdate({ min: 18, max: 65, mode: 'age' }).toLocaleDateString()) },
+    dummy: (format) => { return dummy(format) }
 
+}
+
+function dummy(format, output = "") {
+    if (format.length > 0) {
+        switch (format[0]) {
+            case 'n':
+                output += numbers(1)
+                break;
+            case 'c':
+                output += letters(1)
+                break;
+            case '(':
+                let amount = parseInt(format.substring(1, format.indexOf(')')))
+                let type = output.charAt(output.length - 1)
+                format = Quantify(type, amount - 1) + format.substring(format.indexOf(')') + 1, format.length)
+            default:
+                output += format[0];
+                break;
+        }
+        output = dummy(format.substring(1, format.length), output)
+    }
+
+    return output;
+}
+
+function Quantify(letter, amount, output = "") {
+    if (amount > 0) {
+        output += letter;
+        amount--
+        output = Quantify(letter, amount, output)
+    }
+
+    return output;
 }
 
 
