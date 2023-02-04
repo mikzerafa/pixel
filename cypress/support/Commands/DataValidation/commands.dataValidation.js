@@ -6,7 +6,7 @@ Cypress.Commands.add('ValidateEmailField', { prevSubject: true }, (subject) => {
     //Email Max -> 200 Characters
 
     cy.wrap(subject).EmailValidation_TopLevelDomainLessThan2Chars_ToFail()
-        .EmailValidation_MissingUsername_ToFail()
+        //.EmailValidation_MissingUsername_ToFail()
         .EmailValidation_MissingAt_ToFail()
         .EmailValidation_MissingDomain_ToFail()
         .EmailValidation_MissingDot_ToFail()

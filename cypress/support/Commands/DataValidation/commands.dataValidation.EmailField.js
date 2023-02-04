@@ -1,6 +1,7 @@
 /// <reference types="cypress" />
 import Register from "../../pom/Register"
-import data from '../../data/DummyData'
+import gen from '../Generic/commands.generic'
+import 'mocha'
 
 //Rules:
 //*char*|| *num* || *Equals(=)* @ *char*||*num*.*char* *char* || *num* @*num* 
@@ -22,87 +23,6 @@ import data from '../../data/DummyData'
 
 */
 
-Cypress.Commands.add('ValidateEmail_ToPass', () => {
-    Register.get.page1.emailValidator().ClassContainsFormInputValid()
-})
-
-Cypress.Commands.add('ValidateEmail_ToFail', () => {
-    Register.get.page1.emailValidator().ClassDoesNotContainFormInputValid()
-})
-
-Cypress.Commands.add('EmailValidation_TopLevelDomainLessThan2Chars_ToFail', { prevSubject: true }, (subject) => {
-    cy.log('EmailValidation_TopLevelDomainLessThan2Chars_ToFail')
-    cy.wrap(subject).clear().type(data.get.dummy('c@c.c'))
-    cy.ValidateEmail_ToFail()
-    return cy.wrap(subject)
-})
-
-Cypress.Commands.add('EmailValidation_MissingUsername_ToFail', { prevSubject: true }, (subject) => {
-    cy.log('EmailValidation_MissingUsername_ToFail')
-    cy.wrap(subject).clear().type(data.get.dummy('@c.cc'))
-    cy.ValidateEmail_ToFail()
-    return cy.wrap(subject)
-})
-
-Cypress.Commands.add('EmailValidation_MissingAt_ToFail', { prevSubject: true }, (subject) => {
-    cy.log('EmailValidation_MissingAt_ToFail')
-    cy.wrap(subject).clear().type(data.get.dummy('cc.cc'))
-    cy.ValidateEmail_ToFail()
-    return cy.wrap(subject)
-
-})
-
-Cypress.Commands.add('EmailValidation_MissingDomain_ToFail', { prevSubject: true }, (subject) => {
-    cy.log('EmailValidation_MissingDomain_ToFail')
-    cy.wrap(subject).clear().type(data.get.dummy('c@.cc'))
-    cy.ValidateEmail_ToFail()
-    return cy.wrap(subject)
-})
-
-Cypress.Commands.add('EmailValidation_MissingDot_ToFail', { prevSubject: true }, (subject) => {
-    cy.log('EmailValidation_MissingDot_ToFail')
-    cy.wrap(subject).clear().type(data.get.dummy('c@ccc'))
-    cy.ValidateEmail_ToFail()
-    return cy.wrap(subject)
-})
-
-Cypress.Commands.add('EmailValidation_TopLevelDomainContainsNumber_ToFail', { prevSubject: true }, (subject) => {
-    cy.log('EmailValidation_TopLevelDomainContainsNumber_ToFail')
-    cy.wrap(subject).clear().type(data.get.dummy('c@c.nc'))
-    cy.ValidateEmail_ToFail()
-    return cy.wrap(subject)
-})
-
-Cypress.Commands.add('EmailValidation_DomainContainsEquals_ToFail', { prevSubject: true }, (subject) => {
-    cy.log('EmailValidation_DomainContainsEquals_ToFail')
-    cy.wrap(subject).clear().type(data.get.dummy('c@=.cc'))
-    cy.ValidateEmail_ToFail()
-    return cy.wrap(subject)
-
-})
-
-Cypress.Commands.add('EmailValidation_TopLevelDomainContainsEquals_ToFail', { prevSubject: true }, (subject) => {
-    cy.log('EmailValidation_TopLevelDomainContainsEquals_ToFail')
-    cy.wrap(subject).clear().type(data.get.dummy('c@c.=c'))
-    cy.ValidateEmail_ToFail()
-    return cy.wrap(subject)
-})
-
-Cypress.Commands.add('EmailValidation_ContainsSpecialCharacters_ToFail', { prevSubject: true }, (subject) => {
-    cy.log('EmailValidation_ContainsSpecialCharacters_ToFail')
-    cy.wrap(subject).clear().type(data.get.dummy(']c@c.cc'))
-    cy.ValidateEmail_ToFail()
-    return cy.wrap(subject)
-})
-
-Cypress.Commands.add('EmailValidation_MoreThan200Characters_ToFail', { prevSubject: true }, (subject) => {
-    cy.log('EmailValidation_MoreThan200Characters_ToFail')
-    cy.wrap(subject).clear().type(data.get.dummy('c(196)@c.cc'))
-    cy.ValidateEmail_ToFail()
-    return cy.wrap(subject)
-})
-
-
 //TESTS TO PASS
 
 /*
@@ -115,37 +35,39 @@ Cypress.Commands.add('EmailValidation_MoreThan200Characters_ToFail', { prevSubje
 
 */
 
-Cypress.Commands.add('EmailValidation_MinimumRequirements_ToPass', { prevSubject: true }, (subject) => {
-    cy.log('EmailValidation_MinimumRequirements_ToPass')
-    cy.wrap(subject).clear().type(data.get.dummy('c@c.cc'))
-    cy.ValidateEmail_ToPass()
-    return cy.wrap(subject)
+
+
+
+Cypress.Commands.add('ValidateEmail_ToPass', () => {
+    Register.get.page1.emailValidator().ClassContainsFormInputValid()
 })
 
-Cypress.Commands.add('EmailValidation_UsernameContainsNumber_ToPass', { prevSubject: true }, (subject) => {
-    cy.log('EmailValidation_UsernameContainsNumber_ToPass')
-    cy.wrap(subject).clear().type(data.get.dummy('n@c.cc'))
-    cy.ValidateEmail_ToPass()
-    return cy.wrap(subject)
+Cypress.Commands.add('ValidateEmail_ToFail', () => {
+    Register.get.page1.emailValidator().ClassDoesNotContainFormInputValid()
 })
 
-Cypress.Commands.add('EmailValidation_DomainContainsNumber_ToPass', { prevSubject: true }, (subject) => {
-    cy.log('EmailValidation_DomainContainsNumber_ToPass')
-    cy.wrap(subject).clear().type(data.get.dummy('c@n.cc'))
-    cy.ValidateEmail_ToPass()
-    return cy.wrap(subject)
-})
+const setup = {
+    EmailFieldFunctions: () => {
+        gen.get.addEmailValidation('TopLevelDomainLessThan2Chars', "c@c.c", false)
+        gen.get.addEmailValidation('MissingUsername', "@c.cc", false)
+        gen.get.addEmailValidation('MissingAt', "cc.cc", false)
+        gen.get.addEmailValidation("MissingDomain", "c@.cc", false)
+        gen.get.addEmailValidation("MissingDot", "c@ccc", false)
+        gen.get.addEmailValidation("TopLevelDomainContainsNumber", "c@c.nc", false)
+        gen.get.addEmailValidation("DomainContainsEquals", "c@=.cc", false)
+        gen.get.addEmailValidation("TopLevelDomainContainsEquals", "c@c.=c", false)
+        gen.get.addEmailValidation("ContainsSpecialCharacters", "[c@c.cc", false)
+        gen.get.addEmailValidation("MoreThan200Characters", 'c(196)@c.cc', false)
 
-Cypress.Commands.add('EmailValidation_UsernameContainsEqualsSymbal_ToPass', { prevSubject: true }, (subject) => {
-    cy.log('EmailValidation_UsernameContainsEqualsSymbal_ToPass')
-    cy.wrap(subject).clear().type(data.get.dummy('=@c.cc'))
-    cy.ValidateEmail_ToPass()
-    return cy.wrap(subject)
-})
+        gen.get.addEmailValidation('MinimumRequirements', 'c@c.cc')
+        gen.get.addEmailValidation('UsernameContainsNumber', 'n@c.cc')
+        gen.get.addEmailValidation('DomainContainsNumber', 'c@n.cc')
+        gen.get.addEmailValidation('UsernameContainsEqualsSymbal', '=@c.cc')
+        gen.get.addEmailValidation('EmailContains200Characters', "c(195)@c.cc")
+    }
 
-Cypress.Commands.add('EmailValidation_EmailContains200Characters_ToPass', { prevSubject: true }, (subject) => {
-    cy.log('EmailValidation_EmailContains200Characters_ToPass')
-    cy.wrap(subject).clear().type(data.get.dummy('c(195)@c.cc'))
-    cy.ValidateEmail_ToPass()
-    return cy.wrap(subject)
-})
+}
+
+export default {
+    setup
+}

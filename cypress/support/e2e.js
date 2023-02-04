@@ -26,5 +26,16 @@ import './Commands/commands.storage'
 import './Commands/DataValidation/commands.dataValidation'
 import './Commands/DataValidation/commands.dataValidation.EmailField'
 
+
 // Alternatively you can use CommonJS syntax:
 // require('./commands')
+
+import setupEmail from '../support/Commands/DataValidation/commands.dataValidation.EmailField'
+
+describe('Setting up', () => {
+    it('Email Validation Functions Setup', () => {
+
+        setupEmail.setup.EmailFieldFunctions()
+        cy.log('Emails setup')
+    })
+})
